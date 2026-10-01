@@ -1,0 +1,157 @@
+
+<!DOCTYPE html>
+<html lang="pl">
+<head>
+<meta charset="UTF-8">
+<title>PhoneCaseSummary - Instalator</title>
+<style>
+*{box-sizing:border-box;margin:0;padding:0}
+body{font-family:Arial,sans-serif;background:#eaeded;min-height:100vh;display:flex;align-items:center;justify-content:center;padding:40px 20px}
+.card{background:#fff;border-radius:12px;box-shadow:0 4px 20px rgba(0,0,0,.15);max-width:640px;width:100%;overflow:hidden}
+.header{background:#232f3e;color:#ff9900;padding:24px 32px;text-align:center}
+.header h1{font-size:22px;margin-bottom:4px}
+.header .sub{color:#00bfff;font-size:13px}
+.body{padding:32px}
+.step{display:flex;gap:16px;margin-bottom:24px;align-items:flex-start}
+.num{background:#ff9900;color:#111;font-weight:bold;min-width:32px;height:32px;border-radius:50%;display:flex;align-items:center;justify-content:center;font-size:14px;flex-shrink:0}
+.step-text{font-size:14px;color:#333;line-height:1.6}
+.step-text strong{color:#111}
+.btn-area{text-align:center;margin:32px 0 16px}
+.install-btn{
+  display:inline-block;background:linear-gradient(135deg,#ff9900,#e88600);color:#111;
+  font-weight:bold;font-size:18px;padding:16px 48px;border-radius:40px;
+  text-decoration:none;cursor:grab;box-shadow:0 4px 15px rgba(255,153,0,.4);
+  transition:all 0.2s;user-select:none
+}
+.install-btn:hover{transform:translateY(-2px);box-shadow:0 6px 20px rgba(255,153,0,.5)}
+.install-btn:active{cursor:grabbing;transform:scale(0.97)}
+.hint{text-align:center;color:#888;font-size:12px;margin-top:8px}
+.warn{background:#fff3cd;border-left:4px solid #ff9900;padding:12px 16px;border-radius:4px;font-size:12px;color:#664d03;margin-top:24px}
+.footer{background:#f7f7f7;padding:16px 32px;text-align:center;font-size:11px;color:#999;border-top:1px solid #eee}
+.kb{background:#232f3e;color:#fff;padding:2px 8px;border-radius:4px;font-size:12px;font-family:monospace}
+.toolbar-img{text-align:center;margin:16px 0}
+.toolbar-img .bar{background:#f0f0f0;border:2px dashed #ff9900;border-radius:8px;padding:12px 24px;display:inline-block;font-size:13px;color:#666}
+.note{background:#e8f4fd;border-left:4px solid #527fff;padding:10px 14px;border-radius:4px;font-size:12px;color:#1a3a5c;margin-top:16px}
+.blocked{text-align:center;padding:60px 32px}
+.blocked .icon{font-size:64px;margin-bottom:16px}
+.blocked h2{color:#c0392b;font-size:20px;margin-bottom:12px}
+.blocked p{color:#666;font-size:14px;line-height:1.6}
+.loading{text-align:center;padding:60px 32px}
+.loading .spinner{display:inline-block;width:40px;height:40px;border:4px solid #eee;border-top:4px solid #ff9900;border-radius:50%;animation:spin 1s linear infinite}
+@keyframes spin{to{transform:rotate(360deg)}}
+.loading p{color:#888;margin-top:16px;font-size:14px}
+</style>
+</head>
+<body>
+<div class="card">
+  <div class="header">
+    <h1>&#128241; PhoneCaseSummary</h1>
+    <div class="sub">by konod &bull; Instalator bookmarkletu</div>
+  </div>
+
+  <!-- LOADING -->
+  <div id="viewLoading" class="loading">
+    <div class="spinner"></div>
+    <p>Sprawdzanie dost&#281;pno&#347;ci...</p>
+  </div>
+
+  <!-- BLOCKED -->
+  <div id="viewBlocked" class="blocked" style="display:none">
+    <div class="icon">&#128683;</div>
+    <h2>Instalacja niedost&#281;pna</h2>
+    <p id="blockedMsg">Narz&#281;dzie jest tymczasowo wy&#322;&#261;czone.</p>
+  </div>
+
+  <!-- INSTALLER -->
+  <div id="viewInstaller" class="body" style="display:none">
+    <div class="step">
+      <div class="num">1</div>
+      <div class="step-text">
+        Upewnij si&#281;, &#380;e <strong>pasek zak&#322;adek jest widoczny</strong> w Firefoxie.<br>
+        Je&#347;li nie widzisz paska, naci&#347;nij <span class="kb">Ctrl + Shift + B</span>
+      </div>
+    </div>
+    <div class="step">
+      <div class="num">2</div>
+      <div class="step-text">
+        <strong>Przeci&#261;gnij</strong> poni&#380;szy przycisk na pasek zak&#322;adek:
+      </div>
+    </div>
+
+    <div class="btn-area">
+      <a class="install-btn" id="bmLink" href="#" onclick="event.preventDefault();alert('Nie klikaj! Przeci\u0105gnij ten przycisk na pasek zak\u0142adek w Firefoxie.');">PhoneCaseSummary</a>
+    </div>
+    <div class="hint">&#8593; Z&#322;ap i przeci&#261;gnij na pasek zak&#322;adek &#8593;</div>
+
+    <div class="toolbar-img">
+      <div class="bar">&#9776; &nbsp; &#8592; &#8594; &#8635; &nbsp; &#127968; &nbsp; | &nbsp; <strong style="color:#ff9900;">PhoneCaseSummary</strong> &nbsp; | &nbsp; inne zak&#322;adki...</div>
+    </div>
+
+    <div class="step">
+      <div class="num">3</div>
+      <div class="step-text">
+        Wejd&#378; na stron&#281; <strong>MFT</strong> i kliknij zak&#322;adk&#281; <strong>&#8222;PhoneCaseSummary&#8221;</strong> na pasku.<br>
+        Dashboard otworzy si&#281; w nowej karcie.
+      </div>
+    </div>
+
+    <div class="note">
+      &#128161; <strong>Nazwa zak&#322;adki:</strong> Je&#347;li po przeci&#261;gni&#281;ciu nazwa si&#281; nie uzupe&#322;ni&#322;a &#8212; kliknij <strong>prawym przyciskiem</strong> na now&#261; zak&#322;adk&#281; na pasku, wybierz <strong>&#8222;Edytuj zak&#322;adk&#281;&#8221;</strong> i wpisz: <strong>PhoneCaseSummary</strong>
+    </div>
+
+    <div class="warn">
+      &#9888;&#65039; <strong>Wa&#380;ne:</strong> Bookmarklet dzia&#322;a tylko na stronie MFT. Musisz by&#263; zalogowany, &#380;eby dane si&#281; za&#322;adowa&#322;y. Je&#347;li popup zostanie zablokowany, zezw&#243;l na wyskakuj&#261;ce okna dla strony MFT.
+    </div>
+  </div>
+
+  <div class="footer">
+    PhoneCaseSummary <span style="color:#00bfff">by konod</span> &bull; v1.0
+  </div>
+</div>
+
+<script>
+(function(){
+  var BOOKMARKLET='javascript:void(eval(atob("KGZ1bmN0aW9uKCl7dmFyIGJhc2U9Ii9tZnQvYXBpL3dpcC1pdGVtcz8iO2Z1bmN0aW9uIGdwKCl7dmFyIHA9bmV3IFVSTFNlYXJjaFBhcmFtcygpO3AuYXBwZW5kKCJwcm9kdWN0VHlwZSIsIlBIT05FX0NBU0UiKTtwLmFwcGVuZCgiY3VycmVudFN0YXRlIiwiTkVXIik7cC5hcHBlbmQoImN1cnJlbnRTdGF0ZSIsIlJFQURZIik7cC5hcHBlbmQoInNvcnRCeSIsIkVYUEVDVEVEX1NISVBfREFURSIpO3AuYXBwZW5kKCJkZXNjIiwiZmFsc2UiKTtwLmFwcGVuZCgiY29tcGxldGVNdWx0aXMiLCJmYWxzZSIpO3AuYXBwZW5kKCJwYWdlIiwiMSIpO3AuYXBwZW5kKCJ1c2VPdXRib3VuZERhdGEiLCJmYWxzZSIpO3JldHVybiBwfWZ1bmN0aW9uIGZhKGNiKXt2YXIgcD1ncCgpO2ZldGNoKGJhc2UrcC50b1N0cmluZygpKS50aGVuKGZ1bmN0aW9uKHIpe3JldHVybiByLmpzb24oKX0pLnRoZW4oZnVuY3Rpb24oZil7dmFyIHRwPWYudG90YWxQYWdlc3x8MSxyYz1mLnJlY29yZHN8fFtdLHByPVtdO2Zvcih2YXIgcGc9MjtwZzw9dHA7cGcrKyl7cC5zZXQoInBhZ2UiLHBnKTtwci5wdXNoKGZldGNoKGJhc2UrcC50b1N0cmluZygpKS50aGVuKGZ1bmN0aW9uKHIpe3JldHVybiByLmpzb24oKX0pKX1Qcm9taXNlLmFsbChwcikudGhlbihmdW5jdGlvbihycyl7Zm9yKHZhciBpPTA7aTxycy5sZW5ndGg7aSsrKXJjPXJjLmNvbmNhdChyc1tpXS5yZWNvcmRzfHxbXSk7Y2IocmMpfSl9KS5jYXRjaChmdW5jdGlvbihlKXthbGVydCgiQmxhZDogIitlLm1lc3NhZ2UpfSl9ZnVuY3Rpb24gcHJvYyhyYyl7dmFyIG1kPXt9LHRsPXt9O2Zvcih2YXIgaT0wO2k8cmMubGVuZ3RoO2krKyl7dmFyIGl0PXJjW2ldLG1vPWl0LnBob25lTW9kZWx8fCJVTktOT1dOIjtpZighbWRbbW9dKW1kW21vXT17bjptbyxjOjAsZTpudWxsfTttZFttb10uYysrO3ZhciB0cz1udWxsO2lmKGl0LmV4cGVjdGVkU2hpcERhdGUpe3RzPXR5cGVvZiBpdC5leHBlY3RlZFNoaXBEYXRlPT09Im51bWJlciI/aXQuZXhwZWN0ZWRTaGlwRGF0ZTpuZXcgRGF0ZShpdC5leHBlY3RlZFNoaXBEYXRlKS5nZXRUaW1lKCk7aWYoaXNOYU4odHMpKXRzPW51bGx9aWYodHMpe2lmKCFtZFttb10uZXx8dHM8bWRbbW9dLmUpbWRbbW9dLmU9dHM7dmFyIGQ9bmV3IERhdGUodHMpLGRzPWQuZ2V0RnVsbFllYXIoKSsiLSIrU3RyaW5nKGQuZ2V0TW9udGgoKSsxKS5wYWRTdGFydCgyLCIwIikrIi0iK1N0cmluZyhkLmdldERhdGUoKSkucGFkU3RhcnQoMiwiMCIpLGhoPWQuZ2V0SG91cnMoKSx0az1kcysifCIraGg7aWYoIXRsW3RrXSl0bFt0a109e2Q6ZHMsaDpoaCx0czpuZXcgRGF0ZShkcysiVCIrU3RyaW5nKGhoKS5wYWRTdGFydCgyLCIwIikrIjowMDowMCIpLmdldFRpbWUoKSxuOjAsbTp7fX07dGxbdGtdLm4rKztpZighdGxbdGtdLm1bbW9dKXRsW3RrXS5tW21vXT0wO3RsW3RrXS5tW21vXSsrfX12YXIgbWs9T2JqZWN0LmtleXMobWQpO3ZhciBtb2RlbFRvdGFsPXt9O2Zvcih2YXIgaT0wO2k8bWsubGVuZ3RoO2krKyl7dmFyIG09bWRbbWtbaV1dO21vZGVsVG90YWxbbS5uXT17YzptLmMsY3k6TWF0aC5jZWlsKG0uYy82KSxlOm0uZSxhc3NpZ25lZDpmYWxzZX19dmFyIHRhPVtdLHRrMj1PYmplY3Qua2V5cyh0bCk7Zm9yKHZhciBpPTA7aTx0azIubGVuZ3RoO2krKyl7dmFyIHQ9dGxbdGsyW2ldXSx0bT1bXSx0bWs9T2JqZWN0LmtleXModC5tKTtmb3IodmFyIGo9MDtqPHRtay5sZW5ndGg7aisrKXRtLnB1c2goe246dG1rW2pdLGM6dC5tW3Rta1tqXV19KTt0YS5wdXNoKHtkOnQuZCxoOnQuaCx0czp0LnRzLG46dC5uLG06dG19KX10YS5zb3J0KGZ1bmN0aW9uKGEsYil7cmV0dXJuIGEudHMtYi50c30pO3ZhciB0b3RhbEN5PTA7Zm9yKHZhciBpPTA7aTx0YS5sZW5ndGg7aSsrKXt2YXIgc2xvdEN5PTA7dGFbaV0ubS5zb3J0KGZ1bmN0aW9uKGEsYil7cmV0dXJuKG1vZGVsVG90YWxbYi5uXT9tb2RlbFRvdGFsW2Iubl0uYzowKS0obW9kZWxUb3RhbFthLm5dP21vZGVsVG90YWxbYS5uXS5jOjApfSk7Zm9yKHZhciBqPTA7ajx0YVtpXS5tLmxlbmd0aDtqKyspe3ZhciBtbj10YVtpXS5tW2pdLm47dmFyIGN5PTA7aWYobW9kZWxUb3RhbFttbl0mJiFtb2RlbFRvdGFsW21uXS5hc3NpZ25lZCl7Y3k9bW9kZWxUb3RhbFttbl0uY3k7bW9kZWxUb3RhbFttbl0uYXNzaWduZWQ9dHJ1ZX10YVtpXS5tW2pdLmN5PWN5O3RhW2ldLm1bal0udG90YWw9bW9kZWxUb3RhbFttbl0/bW9kZWxUb3RhbFttbl0uYzowO3Nsb3RDeSs9Y3l9dGFbaV0uY3k9c2xvdEN5O3RvdGFsQ3krPXNsb3RDeTt0YVtpXS5jdT10b3RhbEN5fXZhciBtYT1bXTtmb3IodmFyIGk9MDtpPG1rLmxlbmd0aDtpKyspe3ZhciBtPW1kW21rW2ldXTttYS5wdXNoKHtuOm0ubixjOm0uYyxlOm0uZSxiOk1hdGguY2VpbChtLmMvNikscjptLmMlNn0pfXJldHVybnttb2RlbHM6bWEsdGw6dGEsdG90YWw6cmMubGVuZ3RoLHRjOnRvdGFsQ3l9fXZhciB3aW49d2luZG93Lm9wZW4oIiIsIl9ibGFuayIpO2lmKCF3aW4pe2FsZXJ0KCJQb3B1cCB6YWJsb2tvd2FueSEiKTtyZXR1cm59dmFyIHNrPSJjcHQiLHNhPXRydWU7ZnVuY3Rpb24gcmVuZGVyKEQpe3ZhciBub3c9RGF0ZS5ub3coKTt2YXIgZG9jPXdpbi5kb2N1bWVudDt2YXIgYXJyPUQubW9kZWxzLnNsaWNlKCk7YXJyLnNvcnQoZnVuY3Rpb24oYSxiKXtzd2l0Y2goc2spe2Nhc2UibW9kZWwiOnJldHVybiBzYT9hLm4udG9Mb3dlckNhc2UoKS5sb2NhbGVDb21wYXJlKGIubi50b0xvd2VyQ2FzZSgpKTpiLm4udG9Mb3dlckNhc2UoKS5sb2NhbGVDb21wYXJlKGEubi50b0xvd2VyQ2FzZSgpKTtjYXNlImNvdW50IjpyZXR1cm4gc2E/YS5jLWIuYzpiLmMtYS5jO2Nhc2UiYmF0Y2giOnJldHVybiBzYT9hLmItYi5iOmIuYi1hLmI7Y2FzZSJjcHQiOnZhciBlYT1hLmV8fEluZmluaXR5LGViPWIuZXx8SW5maW5pdHk7cmV0dXJuIHNhP2VhLWViOmViLWVhO2RlZmF1bHQ6cmV0dXJuIDB9fSk7ZnVuY3Rpb24gZjIodHMpe2lmKCF0cylyZXR1cm4iLSI7dmFyIGQ9bmV3IERhdGUodHMpO3JldHVybiBTdHJpbmcoZC5nZXREYXRlKCkpLnBhZFN0YXJ0KDIsIjAiKSsiLiIrU3RyaW5nKGQuZ2V0TW9udGgoKSsxKS5wYWRTdGFydCgyLCIwIikrIiAiK1N0cmluZyhkLmdldEhvdXJzKCkpLnBhZFN0YXJ0KDIsIjAiKSsiOiIrU3RyaW5nKGQuZ2V0TWludXRlcygpKS5wYWRTdGFydCgyLCIwIil9dmFyIHJvd3M9IiI7Zm9yKHZhciBpPTA7aTxhcnIubGVuZ3RoO2krKyl7dmFyIG09YXJyW2ldLG92PW0uZSYmbS5lPG5vdyxubT1tLm4ucmVwbGFjZSgvXy9nLCIgIik7cm93cys9Ijx0ciIrKG92PyIgY2xhc3M9b3YiOiIiKSsiPjx0ZCBzdHlsZT1jb2xvcjojOTk5PiIrKGkrMSkrIjwvdGQ+PHRkIHN0eWxlPWZvbnQtd2VpZ2h0OjUwMD4iK25tKyI8L3RkPjx0ZCBzdHlsZT10ZXh0LWFsaWduOmNlbnRlcj48c3BhbiBjbGFzcz1iZGc+IittLmMrIjwvc3Bhbj48L3RkPjx0ZCBzdHlsZT10ZXh0LWFsaWduOmNlbnRlcj4iK20uYisiPC90ZD48dGQiKyhvdj8iIGNsYXNzPWNwb3YiOiIiKSsiPiIrZjIobS5lKSsiPC90ZD48L3RyPiJ9dmFyIHRkPW5ldyBEYXRlKCksdHMyPXRkLmdldEZ1bGxZZWFyKCkrIi0iK1N0cmluZyh0ZC5nZXRNb250aCgpKzEpLnBhZFN0YXJ0KDIsIjAiKSsiLSIrU3RyaW5nKHRkLmdldERhdGUoKSkucGFkU3RhcnQoMiwiMCIpO2Z1bmN0aW9uIGRsKGRzKXtpZihkcz09PXRzMilyZXR1cm4iRHppcyI7dmFyIHQyPW5ldyBEYXRlKHRkKTt0Mi5zZXREYXRlKHQyLmdldERhdGUoKSsxKTt2YXIgbnM9dDIuZ2V0RnVsbFllYXIoKSsiLSIrU3RyaW5nKHQyLmdldE1vbnRoKCkrMSkucGFkU3RhcnQoMiwiMCIpKyItIitTdHJpbmcodDIuZ2V0RGF0ZSgpKS5wYWRTdGFydCgyLCIwIik7aWYoZHM9PT1ucylyZXR1cm4iSnV0cm8iO3ZhciBkeD1uZXcgRGF0ZShkcyk7cmV0dXJuWyJOZCIsIlBuIiwiV3QiLCJTciIsIkN6IiwiUHQiLCJTbyJdW2R4LmdldERheSgpXSsiICIrZHMuc2xpY2UoOCkrIi4iK2RzLnNsaWNlKDUsNyl9dmFyIHRsaD0iIjtmb3IodmFyIGk9MDtpPEQudGwubGVuZ3RoO2krKyl7dmFyIHM9RC50bFtpXSxpbz1zLnRzPG5vdzt2YXIgZG90PWlvPyImIzEyODMwODsgIjoiJiM5ODk4OyAiO3RsaCs9IjxkaXYgY2xhc3M9J3RzbG90IisoaW8/IiB0b3YiOiIiKSsiJz48c3Bhbj4iK2RvdCsiQ1BUICIrU3RyaW5nKHMuaCkucGFkU3RhcnQoMiwiMCIpKyI6MDAgIitkbChzLmQpKyIgLSAiK3MubisiIHN6dCAvICIrcy5jeSsiIGN5a2xpPC9zcGFuPjxzcGFuIGNsYXNzPWN1bT5Ta3VtdWw6ICIrcy5jdSsiPC9zcGFuPjwvZGl2PiI7Zm9yKHZhciBqPTA7ajxzLm0ubGVuZ3RoO2orKyl7dmFyIHNtPXMubVtqXSxubXg9c20ubi5yZXBsYWNlKC9fL2csIiAiKTt2YXIgY3lUeHQ9c20uY3k+MD8iPHNwYW4gY2xhc3M9Y3liPiIrc20uY3krIngwPC9zcGFuPiI6IjxzcGFuIGNsYXNzPWN5MD4wPC9zcGFuPiI7dGxoKz0iPGRpdiBjbGFzcz1zdWI+PHNwYW4gY2xhc3M9bW4+IitubXgrIjwvc3Bhbj48c3BhbiBjbGFzcz1jbnQ+PHNwYW4gY2xhc3M9IisoaW8/ImJvIjoiYmgiKSsiPiIrc20uYysiPC9zcGFuPjwvc3Bhbj48c3BhbiBjbGFzcz10b3Q+KG9nXHUwMEYzbFx1MDE0MmVtOiAiK3NtLnRvdGFsKyIpPC9zcGFuPiIrY3lUeHQrIjwvZGl2PiJ9fWRvYy5vcGVuKCk7ZG9jLndyaXRlKCI8IURPQ1RZUEUgaHRtbD48aHRtbD48aGVhZD48bWV0YSBjaGFyc2V0PVVURi04Pjx0aXRsZT5QaG9uZSBDYXNlIFN1bW1hcnk8L3RpdGxlPjxzdHlsZT4qe2JveC1zaXppbmc6Ym9yZGVyLWJveDttYXJnaW46MDtwYWRkaW5nOjB9Ym9keXtmb250LWZhbWlseTpBcmlhbCxzYW5zLXNlcmlmO2JhY2tncm91bmQ6I2VhZWRlZDtwYWRkaW5nOjIwcHg7Y29sb3I6IzExMX0uY3Rye21heC13aWR0aDo5ODBweDttYXJnaW46MCBhdXRvO2JhY2tncm91bmQ6I2ZmZjtib3JkZXItcmFkaXVzOjhweDtib3gtc2hhZG93OjAgMnB4IDEwcHggcmdiYSgwLDAsMCwuMTUpO292ZXJmbG93OmhpZGRlbn0uaGRye2JhY2tncm91bmQ6IzIzMmYzZTtjb2xvcjojZmY5OTAwO3BhZGRpbmc6MTZweCAyNHB4O2Rpc3BsYXk6ZmxleDthbGlnbi1pdGVtczpjZW50ZXI7anVzdGlmeS1jb250ZW50OnNwYWNlLWJldHdlZW47ZmxleC13cmFwOndyYXA7Z2FwOjEwcHh9LmhkciBoMXtmb250LXNpemU6MjBweH0uaHJ7ZGlzcGxheTpmbGV4O2FsaWduLWl0ZW1zOmNlbnRlcjtnYXA6MTBweH0uYnR7YmFja2dyb3VuZDojZmY5OTAwO2NvbG9yOiMxMTE7Zm9udC13ZWlnaHQ6Ym9sZDtwYWRkaW5nOjRweCAxNHB4O2JvcmRlci1yYWRpdXM6MjBweDtmb250LXNpemU6MTRweH0uYm17YmFja2dyb3VuZDojNTI3ZmZmO2NvbG9yOiNmZmY7Zm9udC13ZWlnaHQ6Ym9sZDtwYWRkaW5nOjRweCAxNHB4O2JvcmRlci1yYWRpdXM6MjBweDtmb250LXNpemU6MTRweH0uYmN7YmFja2dyb3VuZDojYzAzOTJiO2NvbG9yOiNmZmY7Zm9udC13ZWlnaHQ6Ym9sZDtwYWRkaW5nOjRweCAxNHB4O2JvcmRlci1yYWRpdXM6MjBweDtmb250LXNpemU6MTRweH0udGFic3tkaXNwbGF5OmZsZXg7YmFja2dyb3VuZDojMzc0NzVhfS50YWJ7cGFkZGluZzoxMnB4IDIwcHg7Y29sb3I6I2NjYztmb250LXNpemU6MTNweDtmb250LXdlaWdodDpib2xkO2N1cnNvcjpwb2ludGVyO2JvcmRlci1ib3R0b206M3B4IHNvbGlkIHRyYW5zcGFyZW50fS50YWI6aG92ZXJ7Y29sb3I6I2ZmZn0udGFiLm9ue2NvbG9yOiNmZjk5MDA7Ym9yZGVyLWJvdHRvbS1jb2xvcjojZmY5OTAwO2JhY2tncm91bmQ6IzJkM2E0YX1idXR0b24uYntib3JkZXI6bm9uZTtwYWRkaW5nOjZweCAxNHB4O2JvcmRlci1yYWRpdXM6NHB4O2ZvbnQtd2VpZ2h0OmJvbGQ7Zm9udC1zaXplOjEzcHg7Y3Vyc29yOnBvaW50ZXJ9LmI0e2JhY2tncm91bmQ6IzI3YWU2MDtjb2xvcjojZmZmfS50bXtmb250LXNpemU6MTFweDtjb2xvcjojY2NjfS5wZ3tkaXNwbGF5Om5vbmV9LnBnLm9ue2Rpc3BsYXk6YmxvY2t9dGFibGV7d2lkdGg6MTAwJTtib3JkZXItY29sbGFwc2U6Y29sbGFwc2V9dGhlYWQgdHJ7YmFja2dyb3VuZDojZjNhODQ3fXRoZWFkIHRoe3BhZGRpbmc6MTBweCAxMnB4O3RleHQtYWxpZ246bGVmdDtmb250LXNpemU6MTFweDt0ZXh0LXRyYW5zZm9ybTp1cHBlcmNhc2U7Y3Vyc29yOnBvaW50ZXI7dXNlci1zZWxlY3Q6bm9uZX10aGVhZCB0aDpob3ZlcntiYWNrZ3JvdW5kOiNlODk1MmZ9dGJvZHkgdHI6bnRoLWNoaWxkKGV2ZW4pe2JhY2tncm91bmQ6I2ZhZmFmYX10Ym9keSB0cjpob3ZlcntiYWNrZ3JvdW5kOiNmZmY4ZWV9dGJvZHkgdHIub3Z7YmFja2dyb3VuZDojZmRlY2VhIWltcG9ydGFudH10ZHtwYWRkaW5nOjhweCAxMnB4O2ZvbnQtc2l6ZToxM3B4O2JvcmRlci1ib3R0b206MXB4IHNvbGlkICNmMGYwZjB9LmJkZ3tiYWNrZ3JvdW5kOiMyMzJmM2U7Y29sb3I6I2ZmZjtwYWRkaW5nOjJweCAxMHB4O2JvcmRlci1yYWRpdXM6MTJweDtmb250LXNpemU6MTJweH0uYmh7YmFja2dyb3VuZDojZmY5OTAwO2NvbG9yOiMxMTE7cGFkZGluZzoycHggMTBweDtib3JkZXItcmFkaXVzOjEycHg7Zm9udC1zaXplOjEycHh9LmJve2JhY2tncm91bmQ6I2MwMzkyYjtjb2xvcjojZmZmO3BhZGRpbmc6MnB4IDEwcHg7Ym9yZGVyLXJhZGl1czoxMnB4O2ZvbnQtc2l6ZToxMnB4fS5jcG92e2NvbG9yOiNjMDM5MmI7Zm9udC13ZWlnaHQ6Ym9sZH0udHNsb3R7YmFja2dyb3VuZDojMzc0NzVhO2NvbG9yOiNmZjk5MDA7cGFkZGluZzo4cHggMjRweDtmb250LXdlaWdodDpib2xkO2ZvbnQtc2l6ZToxM3B4O2Rpc3BsYXk6ZmxleDtqdXN0aWZ5LWNvbnRlbnQ6c3BhY2UtYmV0d2Vlbn0udG92e2JhY2tncm91bmQ6IzRhMjAyMH0uY3Vte2NvbG9yOiNjY2M7Zm9udC1zaXplOjExcHg7Zm9udC13ZWlnaHQ6bm9ybWFsfS5zdWJ7cGFkZGluZzo0cHggMjRweCA0cHggNDhweDtmb250LXNpemU6MTJweDtib3JkZXItYm90dG9tOjFweCBzb2xpZCAjZWVlO2Rpc3BsYXk6ZmxleDtnYXA6MTBweDthbGlnbi1pdGVtczpjZW50ZXJ9Lm1ue3dpZHRoOjE2MHB4fS5jbnR7d2lkdGg6NDBweDt0ZXh0LWFsaWduOmNlbnRlcn0udG90e2NvbG9yOiM4ODg7Zm9udC1zaXplOjExcHg7d2lkdGg6OTBweH0uY3lie2JhY2tncm91bmQ6IzI3YWU2MDtjb2xvcjojZmZmO3BhZGRpbmc6MXB4IDZweDtib3JkZXItcmFkaXVzOjhweDtmb250LXNpemU6MTBweDtmb250LXdlaWdodDpib2xkfS5jeTB7Y29sb3I6I2NjYztmb250LXNpemU6MTBweH08L3N0eWxlPjwvaGVhZD48Ym9keT48ZGl2IGNsYXNzPWN0cj48ZGl2IGNsYXNzPWhkcj48aDE+UGhvbmUgQ2FzZSBTdW1tYXJ5IDxzcGFuIHN0eWxlPWNvbG9yOiMwMGJmZmY+Ynkga29ub2Q8L3NwYW4+PC9oMT48ZGl2IGNsYXNzPWhyPjxzcGFuIGNsYXNzPXRtPiIrbmV3IERhdGUoKS50b0xvY2FsZVRpbWVTdHJpbmcoInBsLVBMIikrIjwvc3Bhbj48YnV0dG9uIGNsYXNzPSdiIGI0JyBpZD14cmVmPiYjODYzNTsgT2Rzd2llejwvYnV0dG9uPjxzcGFuIGNsYXNzPWJtPiIrRC5tb2RlbHMubGVuZ3RoKyIgbW9kZWxpPC9zcGFuPjxzcGFuIGNsYXNzPWJ0PiIrRC50b3RhbCsiIHN6dDwvc3Bhbj48c3BhbiBjbGFzcz1iYz4iK0QudGMrIiBjeWtsaTwvc3Bhbj48L2Rpdj48L2Rpdj48ZGl2IGNsYXNzPXRhYnM+PGRpdiBjbGFzcz0ndGFiIG9uJyBpZD10YWIxPktvbGVqa2E8L2Rpdj48ZGl2IGNsYXNzPXRhYiBpZD10YWIyPlRpbWVsaW5lPC9kaXY+PC9kaXY+PGRpdiBpZD1wMSBjbGFzcz0ncGcgb24nPjx0YWJsZT48dGhlYWQ+PHRyPjx0aD4jPC90aD48dGggaWQ9c20+TW9kZWw8L3RoPjx0aCBpZD1zcz5TenQ8L3RoPjx0aCBpZD1zYj5DeWtsZTwvdGg+PHRoIGlkPXNjPkNQVDwvdGg+PC90cj48L3RoZWFkPjx0Ym9keT4iK3Jvd3MrIjwvdGJvZHk+PC90YWJsZT48L2Rpdj48ZGl2IGlkPXAyIGNsYXNzPXBnPiIrdGxoKyI8L2Rpdj48L2Rpdj48L2JvZHk+PC9odG1sPiIpO2RvYy5jbG9zZSgpO2RvYy5nZXRFbGVtZW50QnlJZCgieHJlZiIpLm9uY2xpY2s9ZnVuY3Rpb24oKXtmYShmdW5jdGlvbihyKXtyZW5kZXIocHJvYyhyKSl9KX07ZG9jLmdldEVsZW1lbnRCeUlkKCJ0YWIxIikub25jbGljaz1mdW5jdGlvbigpe2RvYy5nZXRFbGVtZW50QnlJZCgidGFiMSIpLmNsYXNzTmFtZT0idGFiIG9uIjtkb2MuZ2V0RWxlbWVudEJ5SWQoInRhYjIiKS5jbGFzc05hbWU9InRhYiI7ZG9jLmdldEVsZW1lbnRCeUlkKCJwMSIpLmNsYXNzTmFtZT0icGcgb24iO2RvYy5nZXRFbGVtZW50QnlJZCgicDIiKS5jbGFzc05hbWU9InBnIn07ZG9jLmdldEVsZW1lbnRCeUlkKCJ0YWIyIikub25jbGljaz1mdW5jdGlvbigpe2RvYy5nZXRFbGVtZW50QnlJZCgidGFiMiIpLmNsYXNzTmFtZT0idGFiIG9uIjtkb2MuZ2V0RWxlbWVudEJ5SWQoInRhYjEiKS5jbGFzc05hbWU9InRhYiI7ZG9jLmdldEVsZW1lbnRCeUlkKCJwMiIpLmNsYXNzTmFtZT0icGcgb24iO2RvYy5nZXRFbGVtZW50QnlJZCgicDEiKS5jbGFzc05hbWU9InBnIn07ZG9jLmdldEVsZW1lbnRCeUlkKCJzbSIpLm9uY2xpY2s9ZnVuY3Rpb24oKXtpZihzaz09PSJtb2RlbCIpc2E9IXNhO2Vsc2V7c2s9Im1vZGVsIjtzYT10cnVlfWZhKGZ1bmN0aW9uKHIpe3JlbmRlcihwcm9jKHIpKX0pfTtkb2MuZ2V0RWxlbWVudEJ5SWQoInNzIikub25jbGljaz1mdW5jdGlvbigpe2lmKHNrPT09ImNvdW50IilzYT0hc2E7ZWxzZXtzaz0iY291bnQiO3NhPXRydWV9ZmEoZnVuY3Rpb24ocil7cmVuZGVyKHByb2MocikpfSl9O2RvYy5nZXRFbGVtZW50QnlJZCgic2IiKS5vbmNsaWNrPWZ1bmN0aW9uKCl7aWYoc2s9PT0iYmF0Y2giKXNhPSFzYTtlbHNle3NrPSJiYXRjaCI7c2E9dHJ1ZX1mYShmdW5jdGlvbihyKXtyZW5kZXIocHJvYyhyKSl9KX07ZG9jLmdldEVsZW1lbnRCeUlkKCJzYyIpLm9uY2xpY2s9ZnVuY3Rpb24oKXtpZihzaz09PSJjcHQiKXNhPSFzYTtlbHNle3NrPSJjcHQiO3NhPXRydWV9ZmEoZnVuY3Rpb24ocil7cmVuZGVyKHByb2MocikpfSl9fWZhKGZ1bmN0aW9uKHIpe3JlbmRlcihwcm9jKHIpKX0pO3NldEludGVydmFsKGZ1bmN0aW9uKCl7aWYod2luLmNsb3NlZClyZXR1cm47ZmEoZnVuY3Rpb24ocil7cmVuZGVyKHByb2MocikpfSl9LDMwMDAwMCl9KSgp")))';
+
+  // ====== ZMIEN TEN URL NA SWOJ RAW GIST URL ======
+  var CONFIG_URL="config.json";
+  // =================================================
+
+  function show(id){
+    document.getElementById("viewLoading").style.display="none";
+    document.getElementById("viewBlocked").style.display="none";
+    document.getElementById("viewInstaller").style.display="none";
+    document.getElementById(id).style.display="";
+  }
+
+  fetch(CONFIG_URL+"?t="+Date.now())
+    .then(function(r){return r.json()})
+    .then(function(cfg){
+      if(cfg.active){
+        var link=document.getElementById("bmLink");
+        link.href=BOOKMARKLET;
+        link.addEventListener("dragstart",function(e){
+          e.dataTransfer.setData("text/x-moz-url",link.href+"\nPhoneCaseSummary");
+          e.dataTransfer.setData("text/plain",link.href);
+        });
+        show("viewInstaller");
+      } else {
+        if(cfg.message) document.getElementById("blockedMsg").textContent=cfg.message;
+        show("viewBlocked");
+      }
+    })
+    .catch(function(){
+      show("viewInstaller");
+      var link=document.getElementById("bmLink");
+      link.href=BOOKMARKLET;
+      link.addEventListener("dragstart",function(e){
+        e.dataTransfer.setData("text/x-moz-url",link.href+"\nPhoneCaseSummary");
+        e.dataTransfer.setData("text/plain",link.href);
+      });
+    });
+})();
+</script>
+</div>
+</body>
+</html>
+
